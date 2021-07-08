@@ -39,9 +39,9 @@ const RegisterContainer = ({setToken}) => {
     userRegister(formData)
       .then(({data}) => {
         if (data && data.token) {
-          history.push("/dashboard");
           sessionStorage.setItem("token", JSON.stringify(data.token));
           setToken(sessionStorage.getItem("token"));
+          history.push("/todo");
         }
       })
       .catch(handleApiError)

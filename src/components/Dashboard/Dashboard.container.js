@@ -15,7 +15,7 @@ import { handleApiError } from "../../utils";
 
 import Dashboard from "./Dashboard";
 
-const DashboardContainer = () => {
+const DashboardContainer = ({setToken}) => {
 
   const [openMenu, setOpenMenu] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -53,6 +53,7 @@ const DashboardContainer = () => {
       .then(() => {
         sessionStorage.clear();
         history.push("/login");
+        setToken(null);
       })
       .catch(handleApiError)
       .finally(() => setIsLoading(false))

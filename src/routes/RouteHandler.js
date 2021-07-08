@@ -30,7 +30,7 @@ const RouteHandler = () => {
   return (
     <Router>
       {
-        token && token.length ? <Dashboard /> : null
+        token && token.length ? <Dashboard setToken={setToken}/> : null
       }
       <Switch>
         <Route

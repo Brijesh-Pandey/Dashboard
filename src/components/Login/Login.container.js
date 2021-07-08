@@ -44,7 +44,7 @@ const LoginContainer = ({
         if (data && data.token) {
           sessionStorage.setItem("token", JSON.stringify(data.token));
           setToken(sessionStorage.getItem("token"));
-          history.push("/dashboard")
+          history.push("/todo")
         }
       })
       .catch((error) => handleApiError(error))
