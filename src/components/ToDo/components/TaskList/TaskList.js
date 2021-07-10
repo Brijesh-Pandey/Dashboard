@@ -131,8 +131,12 @@ const TaskList = ({
                                 <AssignmentTurnedInIcon
                                   onClick={() => setIsMarkingSuccess(true)}
                                   style={{marginRight: "1rem"}}
+                                  color="primary"
                                 />
-                                <DeleteIcon onClick={() => setIsDeleting(true)} />
+                                <DeleteIcon
+                                  onClick={() => setIsDeleting(true)}
+                                  color="secondary"
+                                />
                               </TableCell>
                               {
                                 isDeleting && (
