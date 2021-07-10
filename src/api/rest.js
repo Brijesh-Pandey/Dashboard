@@ -6,6 +6,8 @@ Git - https://bitbucket.org/__brijesh/
 import {transformedAxios as axios} from "./axios";
 
 const userURL = "https://api-nodejs-todolist.herokuapp.com/user";
+const taskURL = "https://api-nodejs-todolist.herokuapp.com/task";
+
 
 const userLogin = (payload) => {
   const finalUrl = `${userURL}/login`;
@@ -24,12 +26,29 @@ const getUser = (authKey) => {
 
 const logoutUser = (authKey) => {
   const finalUrl = `${userURL}/logout`;
-  return axios.post(finalUrl, null, {headers: {Authorization: authKey}})
+  return axios.post(finalUrl, null, {headers: {Authorization: authKey}});
+};
+
+
+// Task Api's
+
+const addTask = (authKey, payload) => {
+  return axios.post(taskURL, payload, {headers: {Authorization: authKey}});
+};
+
+const getTasks = (authKey) => {
+  return axios.get(taskURL, {headers: {Authorization: authKey}});
 }
+
 
 export {
   userLogin,
   userRegister,
   getUser,
-  logoutUser
+  logoutUser,
+
+  // Task Api's
+
+  addTask,
+  getTasks
 }

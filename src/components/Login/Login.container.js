@@ -7,8 +7,8 @@ import React, {useState} from "react";
 
 import { useHistory } from 'react-router-dom';
 
-import { userLogin } from "../../api/rest";
-import {handleApiError} from "../../utils";
+import { userLogin } from "api";
+import {handleApiError} from "utils";
 
 import Login from "./Login";
 

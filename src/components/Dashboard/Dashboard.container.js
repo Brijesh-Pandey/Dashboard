@@ -10,8 +10,11 @@ import { useHistory } from "react-router";
 import {
   getUser,
   logoutUser
-} from "../../api";
-import { handleApiError } from "../../utils";
+} from "api";
+import {
+  handleApiError,
+  getAuthKey
+} from "utils";
 
 import Dashboard from "./Dashboard";
 
@@ -35,7 +38,7 @@ const DashboardContainer = ({setToken}) => {
   const handleGetUser = () => {
     const userModel = {};
     setIsLoading(true);
-    getUser(JSON.parse(sessionStorage.getItem("token")))
+    getUser(getAuthKey())
       .then(({data}) => {
         userModel.name = data.name;
         userModel.email = data.email;
@@ -49,7 +52,7 @@ const DashboardContainer = ({setToken}) => {
 
   const handleLogout = () => {
     setIsLoading(true);
-    logoutUser(JSON.parse(sessionStorage.getItem("token")))
+    logoutUser(getAuthKey())
       .then(() => {
         sessionStorage.clear();
         history.push("/login");

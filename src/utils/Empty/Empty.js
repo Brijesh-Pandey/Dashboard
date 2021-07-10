@@ -13,7 +13,7 @@ const Empty = ({
   messageDescription
 }) => {
   return (
-    <div>
+    <div className="empty-container">
       <div>
         <img
           alt={message}
@@ -22,8 +22,7 @@ const Empty = ({
         />
       </div>
       <div>
-        <p>{message}</p>
-        <p>{messageDescription}</p>
+        <p className="empty-description">{message}</p>
       </div>
     </div>
   )

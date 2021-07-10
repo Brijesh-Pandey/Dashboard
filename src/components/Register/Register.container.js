@@ -6,8 +6,8 @@ Git - https://bitbucket.org/__brijesh/
 import React, {useState} from "react";
 import {useHistory} from "react-router";
 
-import {userRegister} from "../../api/rest";
-import {handleApiError} from "../../utils";
+import {userRegister} from "api";
+import {handleApiError} from "utils";
 
 import Register from "./Register";
 

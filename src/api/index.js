@@ -7,12 +7,22 @@ import {
   userLogin,
   userRegister,
   getUser,
-  logoutUser
+  logoutUser,
+
+  // Task Api's
+
+  addTask,
+  getTasks
 } from "./rest";
 
 export {
   userLogin,
   userRegister,
   getUser,
-  logoutUser
+  logoutUser,
+
+  // Task Api's
+
+  addTask,
+  getTasks
 }
