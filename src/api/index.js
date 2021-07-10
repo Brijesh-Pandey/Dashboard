@@ -12,7 +12,9 @@ import {
   // Task Api's
 
   addTask,
-  getTasks
+  getTasks,
+  markDone,
+  deleteTask,
 } from "./rest";
 
 export {
@@ -24,5 +26,7 @@ export {
   // Task Api's
 
   addTask,
-  getTasks
+  getTasks,
+  markDone,
+  deleteTask,
 }
