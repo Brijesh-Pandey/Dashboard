@@ -5,6 +5,8 @@ Git - https://bitbucket.org/__brijesh/
 
 import React from 'react';
 
+import moment from 'moment';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
@@ -18,7 +20,13 @@ import {
   CircularProgress
 } from '@material-ui/core';
 
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 import {Empty} from "utils";
+
+import DeleteTask from "./components/DeleteTask";
+import MarkSuccess from "./components/MarkSuccess";
 
 const useStyles = makeStyles({
   root: {
@@ -36,7 +44,12 @@ const useStyles = makeStyles({
 
 const TaskList = ({
   isLoading,
-  tasksList
+  tasksList,
+  setIsDeleting,
+  isDeleting,
+  isMarkingSuccess,
+  setIsMarkingSuccess,
+  getTaskList
 }) => {
   const classes = useStyles();
 
@@ -57,13 +70,20 @@ const TaskList = ({
       id: 'createdAt',
       label: 'Created-At',
       minWidth: 170,
-      align: 'right'
+      align: 'right',
+      format: (value) => moment(value).format("MMMM Do YYYY, h:mm a")
     },
     {
       id: 'updatedAt',
       label: 'Updated-At',
       minWidth: 170,
-      align: 'right'
+      align: 'right',
+      format: (value) => moment(value).format("MMMM Do YYYY, h:mm a")
+    },
+    {
+      label: "Actions",
+      minWidth: 170,
+      align: "right"
     }
   ];
 
@@ -95,20 +115,47 @@ const TaskList = ({
                     />
                   ) : (
                     <TableBody>
-                      {tasksList.map((task) => {
-                        return (
-                          <TableRow hover key={task.id}>
-                            {columns.map((column) => {
-                              const value = task[column.id];
-                              return (
-                                <TableCell key={column.id} align={column.align}>
-                                  {column.format && typeof value === 'boolean' ? column.format(value) : value}
-                                </TableCell>
-                              );
-                            })}
-                          </TableRow>
-                        );
-                      })}
+                      {
+                        tasksList.map((task) => {
+                          return (
+                            <TableRow hover key={task.id}>
+                              {columns.slice(0, 4).map((column) => {
+                                const value = task[column.id];
+                                return (
+                                  <TableCell key={column.id} align={column.align}>
+                                    {column.format ? column.format(value) : value}
+                                  </TableCell>
+                                );
+                              })}
+                              <TableCell style={{cursor: 'pointer'}} align="right">
+                                <AssignmentTurnedInIcon
+                                  onClick={() => setIsMarkingSuccess(true)}
+                                  style={{marginRight: "1rem"}}
+                                />
+                                <DeleteIcon onClick={() => setIsDeleting(true)} />
+                              </TableCell>
+                              {
+                                isDeleting && (
+                                  <DeleteTask
+                                    id={task.id}
+                                    setIsDeleting={setIsDeleting}
+                                    getTaskList={getTaskList}
+                                  />
+                                )
+                              }
+                              {
+                                isMarkingSuccess && (
+                                  <MarkSuccess
+                                    id={task.id}
+                                    setIsMarkingSuccess={setIsMarkingSuccess}
+                                    getTaskList={getTaskList}
+                                  />
+                                )
+                              }
+                            </TableRow>
+                          );
+                        }
+                      )}
                     </TableBody>
                   )
                 }
