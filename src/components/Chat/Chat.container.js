@@ -5,7 +5,7 @@ Git - https://bitbucket.org/__brijesh/
 
 import React from 'react';
 
-import ComingSoon from "../../utils/ComingSoon";
+import {ComingSoon} from "utils";
 
 const ChatContainer = () => {
 
