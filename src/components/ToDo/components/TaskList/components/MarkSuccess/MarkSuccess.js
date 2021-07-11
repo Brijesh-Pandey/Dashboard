@@ -18,7 +18,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const useStyles = makeStyles({
   loader: {
     margin: "0 auto",
-    padding: "1rem"
+    paddingBottom: "0.3rem"
   }
 });
 
@@ -40,30 +40,30 @@ const MarkSuccess = ({
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title">{"Mark Done"}</DialogTitle>
-      {
-        isLoading ? (
-          <CircularProgress
-            color="primary"
-            className={classes.loader}
-          />
-        ) : (
-          <>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Are you sure you want to mark this task as done ?
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          Are you sure you want to mark this task as done ?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        {
+          isLoading ? (
+            <CircularProgress
+              color="primary"
+              className={classes.loader}
+            />
+          ) : (
+            <>
               <Button onClick={() => markSuccessHandler(id)} color="primary">
                 Yes
               </Button>
               <Button onClick={handleClose} color="primary" autoFocus>
                 No
               </Button>
-            </DialogActions>
-          </>
-        )
-      }
+            </>
+          )
+        }
+      </DialogActions>
     </Dialog>
   )
 }
