@@ -18,7 +18,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const useStyles = makeStyles({
   loader: {
     margin: "0 auto",
-    padding: "1rem"
+    paddingBottom: "0.3rem"
   }
 });
 
@@ -40,6 +40,12 @@ const DeleteTask = ({
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title">{"Delete Task"}</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          Are you sure you want to delete this task ?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
       {
         isLoading ? (
           <CircularProgress
@@ -48,22 +54,16 @@ const DeleteTask = ({
           />
         ) : (
           <>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Are you sure you want to delete this task ?
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={() => deleteTaskHandler(id)} color="primary">
-                Yes
-              </Button>
-              <Button onClick={handleClose} color="primary" autoFocus>
-                No
-              </Button>
-            </DialogActions>
+            <Button onClick={() => deleteTaskHandler(id)} color="primary">
+              Yes
+            </Button>
+            <Button onClick={handleClose} color="primary" autoFocus>
+              No
+            </Button>
           </>
         )
       }
+      </DialogActions>
     </Dialog>
   )
 }

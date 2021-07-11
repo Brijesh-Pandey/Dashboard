@@ -90,7 +90,7 @@ const TaskList = ({
   return (
     <>
       {
-        tasksList.length ? (
+        tasksList.length || isLoading ? (
           <Paper className={classes.root}>
             <TableContainer className={classes.container}>
               <Table stickyHeader aria-label="sticky table">
@@ -129,9 +129,9 @@ const TaskList = ({
                               })}
                               <TableCell style={{cursor: 'pointer'}} align="right">
                                 <AssignmentTurnedInIcon
-                                  onClick={() => setIsMarkingSuccess(true)}
+                                  onClick={() => task.completed ? null : setIsMarkingSuccess(true)}
                                   style={{marginRight: "1rem"}}
-                                  color="primary"
+                                  color={`${task.completed ? "disabled" : "primary"}`}
                                 />
                                 <DeleteIcon
                                   onClick={() => setIsDeleting(true)}
